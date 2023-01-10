@@ -31,7 +31,23 @@ class Program
             letter = "F";
         }
 
-        Console.WriteLine($"Your grade is {letter}");
+        string gradeSign = "";
+
+        if (gradePercentageNumber >= 70 && gradePercentageNumber <= 97)
+        {
+            int gradeRemainder = gradePercentageNumber % 10;
+        
+            if (gradeRemainder >= 7)
+            {
+                gradeSign = "+";
+            }
+            else if (gradeRemainder < 3)
+            {
+                gradeSign = "-";
+            }
+        } 
+        
+        Console.WriteLine($"Your grade is {letter}{gradeSign}");
 
         if (gradePercentageNumber >= 70)
         {
@@ -41,5 +57,6 @@ class Program
         {
             Console.WriteLine("Repetition is the key to learning!");
         }
+        
     }
 }
