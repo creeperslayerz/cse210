@@ -1,6 +1,6 @@
 using System;
 
-class Program
+class Program //Get input and print to the terminal
 {
     static void Main(string[] args)
     {

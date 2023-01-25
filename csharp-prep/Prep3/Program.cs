@@ -1,6 +1,6 @@
 using System;
 
-class Program
+class Program //While Loops and Random function
 {
     static void Main(string[] args)
     {

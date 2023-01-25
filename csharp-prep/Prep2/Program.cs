@@ -1,6 +1,6 @@
 using System;
 
-class Program
+class Program //if and else if (conditionals)
 {
     static void Main(string[] args)
     {
