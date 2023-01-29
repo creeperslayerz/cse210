@@ -33,13 +33,7 @@ class Program //Journal Program
             else if(menuChoice == "4")
             {
                 journal.SaveJournal();
-            }
-            
+            }           
         }    
-    }
-
-    static void Menu()
-    {
-
     }
 }

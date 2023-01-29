@@ -18,27 +18,39 @@ public class Journal
 
     public void SaveJournal()
     {
-        // string fileName = "journal.txt";
+        Console.WriteLine("What file name would you like to save it to? ");
+        string fileName = Console.ReadLine();
 
-        // using(StreamWriter outputFile = new StreamWriter(filename))
-        // {
-        //     outputFile.WriteLine(_responseList);
-        // }
+        using(StreamWriter outputFile = new StreamWriter(fileName))
+        {
+            foreach(NewEntry entry in _responseList)
+            {
+                outputFile.WriteLine($"{entry._date}|{entry._randomPrompt}|{entry._response}");
+            }            
+        }
     }
 
     public void LoadJournal()
     {
-    // string filename = "journal.txt";
-    // string[] lines = System.IO.File.ReadAllLines(filename);
+        Console.WriteLine("What file name would you like to load from? ");
+        string fileName = Console.ReadLine();
+    
+        _responseList.Clear();
+        
+        string[] lines = System.IO.File.ReadAllLines(fileName);
+        
+        foreach(string line in lines)
+        {
+            string[] parts = line.Split("|");
 
-    // foreach (string line in lines)
-    // {
-    //     string[] parts = line.Split("|");
+            NewEntry entry = new NewEntry();
+            
+            entry._date = parts[0];
+            entry._randomPrompt = parts[1];
+            entry._response = parts[2];
 
-    //     string date = parts[0];
-    //     string prompt = parts[1];
-    //     string response = parts[2];
-    // }
+            _responseList.Add(entry);
+        }
     }
 
     public void JournalEntry()
