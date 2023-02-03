@@ -4,10 +4,6 @@ public class Journal
 {
     public List<NewEntry> _responseList = new List<NewEntry>();
 
-    public Journal()
-    {
-    }
-
     public void DisplayJournal()
     {
         foreach(NewEntry entry in _responseList)

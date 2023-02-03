@@ -4,9 +4,9 @@ public class NewEntry
     public string _response;
     public string _date;
 
-    public NewEntry()
-    {
-    }
+    // public NewEntry()
+    // {
+    // }
 
     public void Display()
     {
