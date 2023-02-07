@@ -31,12 +31,12 @@ class Scripture
     {
         _verseText = verseText;
     }
-
+    
     public string DisplayScripture()
     {
         Console.Clear();
         Console.WriteLine(_reference);
-        Console.WriteLine(_verseText);
+        // Console.WriteLine(_verseText);
         return _reference + _verseText;
         // return _verseText; //Looks like I can only return one string
     }
