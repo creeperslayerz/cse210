@@ -6,12 +6,12 @@ class Scripture
     public Scripture()
     {
         _reference = "Philippians 4:13";
-        _verseText = "I can do all things through Christ, which strentheneth me.";
+        _verseText = "I can do all things through Christ, which strengtheneth me.";
     }
-    public Scripture(string reference)
+    public Scripture(string customReference)
     {
-        _reference = reference;
-        Console.Write("What is the text of the verse(s)? ");
+        _reference = customReference;
+        Console.WriteLine("Type out the text of the verse(s)? ");
         _verseText = Console.ReadLine();
     }
     
@@ -32,12 +32,16 @@ class Scripture
         _verseText = verseText;
     }
     
-    public string DisplayScripture()
+    public string DisplayReference()
     {
         Console.Clear();
         Console.WriteLine(_reference);
-        // Console.WriteLine(_verseText);
-        return _reference + _verseText;
-        // return _verseText; //Looks like I can only return one string
+        return _reference;
+    }
+    public string DisplayVerse()
+    {
+        Console.WriteLine(_verseText);
+        Console.WriteLine();
+        return _verseText;
     }
 }

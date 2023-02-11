@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 class ListConverter
 {
     private List<string> _scriptureAsList = new List<string>();
     
-    public void ConvertScriptureToList() 
+    public List<string> ConvertScriptureToList() //Gets the _verseText out of Scripture class and splits it into a list called _scriptureAsList
     {
         Scripture defaultScripture = new Scripture();
 
@@ -12,13 +13,13 @@ class ListConverter
 
         foreach(var word in words)
         {
-            Console.Write($"{word} ");
+            // Console.Write($"{word} ");
             _scriptureAsList.Add(word);
         }
-        // Console.WriteLine(_scriptureAsList);
+        return _scriptureAsList;
     }
 
-    public List<string> GetScriptureAsList()
+    public List<string> GetScriptureAsList() //Looks like I don't need this Get Method
     {
         return _scriptureAsList;
     }
