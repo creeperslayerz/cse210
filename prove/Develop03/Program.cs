@@ -8,7 +8,9 @@ class Program
         
         Console.Clear();
         Console.WriteLine("Welcome to the scripture memorization tool!");
-        Console.Write("Type 1 if you would like to memorize the 2023 youth theme, or type 2 to memorize a custom scripture: ");
+        Console.WriteLine("Type 1 if you would like to memorize the 2023 youth theme, or");
+        Console.WriteLine("type 2 to memorize a custom scripture:");
+        Console.Write("(Pressing enter will start hiding words) ");
         string menuChoice = Console.ReadLine();
         
         if(menuChoice == "1")
@@ -28,7 +30,7 @@ class Program
 
             while(theEnd != "quit")
             {
-                if(runningTotal == verseAsList.Count) //quit the program when all the words are hidden
+                if(runningTotal >= verseAsList.Count) //quit the program when all the words are hidden
                 {
                     theEnd = "quit";
                 }
@@ -62,7 +64,7 @@ class Program
 
             while(theEnd != "quit")
             {
-                if(runningTotal == verseAsList.Count) //quit the program when all the words are hidden
+                if(runningTotal >= verseAsList.Count) //quit the program when all the words are hidden
                 {
                     theEnd = "quit";
                 }
