@@ -11,8 +11,7 @@ class Scripture
     public Scripture(string customReference)
     {
         _reference = customReference;
-        Console.WriteLine("Type out the text of the verse(s)? ");
-        _verseText = Console.ReadLine();
+        _verseText = "";
     }
     
     public string GetReference()
