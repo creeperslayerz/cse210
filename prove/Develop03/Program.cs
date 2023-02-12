@@ -10,7 +10,6 @@ class Program
         Console.WriteLine("Welcome to the scripture memorization tool!");
         Console.WriteLine("Type 1 if you would like to memorize the 2023 youth theme, or");
         Console.WriteLine("type 2 to memorize a custom scripture:");
-        Console.Write("(Pressing enter will start hiding words) ");
         string menuChoice = Console.ReadLine();
         
         if(menuChoice == "1")
