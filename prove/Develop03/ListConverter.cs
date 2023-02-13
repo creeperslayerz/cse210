@@ -25,7 +25,7 @@ class ListConverter
 
         // The code below implemented https://learn.microsoft.com/en-us/dotnet/csharp/how-to/parse-strings-using-split
         
-        Console.WriteLine("Type out the text of the verse(s): ");
+        Console.WriteLine("Type out the text of the verse(s): *Pressing Enter begins the words being hidden. ");
         string customVerse = Console.ReadLine();
 
         string scripture = customVerse;
