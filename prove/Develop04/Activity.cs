@@ -1,14 +1,6 @@
 public class Activity
 {
-    // private string _activityName;
     private int _activityDuration;
-
-    // public Activity()
-    // {
-    //     // _activityName = activityName;
-    //     // _activityDescription = activityDescription;
-    //     // _activityDuration = activityDuration;
-    // }
 
     public int GetActivityDuration()
     {
@@ -39,4 +31,10 @@ public class Activity
         //TODO: Pause animation
         //TODO: Return to menu
     }
+
+    //TODO: Create string RandomPromptGenerator(List<string> promptList) method
+
+    //TODO: Create void PauseAnimation() method
+
+    //TODO: Create void CountdownTimer() method
 }
