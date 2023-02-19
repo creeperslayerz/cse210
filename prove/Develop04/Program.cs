@@ -3,34 +3,42 @@ using System;
 class Program
 {
     static void Main(string[] args)
-    {
-        // Console.WriteLine("Hello Develop05 World!");
+    {   
         Console.Clear();
         Console.WriteLine("Welcome to Benski's Mindfuleness Program!");
         Console.WriteLine("Menu Options:");
         Console.WriteLine("  1. Breathing Activity");
-        Console.WriteLine("  1. Reflecting Activity");
-        Console.WriteLine("  1. Listing Activity");
-        Console.WriteLine("  1. Quit");
-        Console.WriteLine("Select a choice from the menu: ");
+        Console.WriteLine("  2. Reflecting Activity");
+        Console.WriteLine("  3. Listing Activity");
+        Console.WriteLine("  4. Quit");
+        Console.Write("Select a choice from the menu: ");
         string activity = Console.ReadLine();
 
+        //TODO: create while loop to continue while(activity != "4")
         if(activity == "1")
         {
-            BreathingActivity breathingActivity = new BreathingActivity("Breathing Activity:");
+            BreathingActivity breathingActivity = new BreathingActivity();
+            breathingActivity.StartingMessage(breathingActivity.GetActivityName(), breathingActivity.GetActivityDescription());
             breathingActivity.BreathingExercise();
+            breathingActivity.EndingMessage(breathingActivity.GetActivityName(), breathingActivity.GetActivityDuration());
         }
         else if(activity == "2")
         {
-            //Reflecting Activity
+            ReflectionActivity reflectionActivity = new ReflectionActivity();
+            reflectionActivity.StartingMessage(reflectionActivity.GetActivityName(), reflectionActivity.GetActivityDescription());
+            reflectionActivity.ReflectionExercise();
+            reflectionActivity.EndingMessage(reflectionActivity.GetActivityName(), reflectionActivity.GetActivityDuration());
         }
         else if(activity == "3")
         {
-            //Listing Activity
+            ListingActivity listingActivity = new ListingActivity();
+            listingActivity.StartingMessage(listingActivity.GetActivityName(), listingActivity.GetActivityDescription());
+            listingActivity.ListingExercise();
+            listingActivity.EndingMessage(listingActivity.GetActivityName(), listingActivity.GetActivityDuration());
         }
-        else //I opted to end the program if anythig other than 1,2,or3 gets input
+        else 
         {
-            Console.WriteLine("Enjoy the rest of your mindfulfilling day!");
+            Console.WriteLine("Please enter a valid option from the menu.");
         }
 
 

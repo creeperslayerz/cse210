@@ -1,23 +1,28 @@
 public class BreathingActivity : Activity
 {
-    private string _breathingActivityDescription = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
+    private string _activityName = "Breathing Activity";
+    private string _activityDescription = "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.";
 
-    public BreathingActivity(string activityName) : base(activityName)
+    public BreathingActivity(){}
+
+    public string GetActivityName()
     {
-        // _breathingActivityDescription = breathingActivityDescription;
+        return _activityName;
+    }
+    public string GetActivityDescription()
+    {
+        return _activityDescription;
     }
 
     public void BreathingExercise()
     {
         Console.Clear();
-        Console.WriteLine("Breathing Activity:");
-        Console.WriteLine();
-        Console.WriteLine(_breathingActivityDescription);
-        Console.WriteLine();
-        Console.Write("How long, in seconds, would you like for your session? ");
-        string activityDurationAsString = Console.ReadLine();
-        int activityDuration = int.Parse(activityDurationAsString);
-
+        Console.WriteLine("Get ready...");
+        //TODO: Pause animation
+        Console.WriteLine("Breath In..."); //TODO: add countdown timer
+        Console.WriteLine("Breath Out..."); //TODO: add countdown timer
+        //TODO: add loop to continue cycle until activityDuration is met
+        
 
 
     }
