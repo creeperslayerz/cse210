@@ -1,7 +1,11 @@
 public class ReflectionActivity : Activity
 {
     private string _activityName = "Reflection Activity";
-    private string _reflectionActivityDescription = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
+    private string _activityDescription = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
+
+    //TODO: create private List<string> _memoryPromptList
+
+    //TODO: create private List<string> _reflectionPromptList
 
     public ReflectionActivity(){}
 
@@ -11,7 +15,7 @@ public class ReflectionActivity : Activity
     }
     public string GetActivityDescription()
     {
-        return _reflectionActivityDescription;
+        return _activityDescription;
     }
 
     public void ReflectionExercise()
