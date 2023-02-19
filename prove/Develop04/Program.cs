@@ -5,7 +5,7 @@ class Program
     static void Main(string[] args)
     {   
         Console.Clear();
-        Console.WriteLine("Welcome to Benski's Mindfuleness Program!");
+        Console.WriteLine("Welcome to Benski's Mindfulness Program!");
         Console.WriteLine("Menu Options:");
         Console.WriteLine("  1. Breathing Activity");
         Console.WriteLine("  2. Reflecting Activity");
