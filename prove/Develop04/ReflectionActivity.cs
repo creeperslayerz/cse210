@@ -29,15 +29,12 @@ public class ReflectionActivity : Activity
         Console.WriteLine();
         Console.WriteLine("When you have something in mind, press enter to continue."); 
         string ready = Console.ReadLine();
-        Console.WriteLine("You may begin in: "); //TODO: add countdown timer
+        Console.Write("You may begin in: ");
+        CountdownTimer();
+        Console.WriteLine();
+        //TODO: continue adding random reflection prompts and pause animations until activity duration is met
         //TODO: add random reflectionPrompt from _reflectionPromptList
         PauseAnimation();
-        //TODO: continue adding random reflection prompts and pause animations until activity duration is met
-
-
-
-
-
     }
 }
 

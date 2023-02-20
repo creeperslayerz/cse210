@@ -23,14 +23,14 @@ public class ListingActivity : Activity
         PauseAnimation();
         Console.WriteLine("List as many responses you can to the following prompt:");
         //TODO: add random listPrompt from _listPromptList
-        Console.WriteLine("You may begin in: "); //TODO: add countdown timer
-        Console.Write("> "); 
-        string answer = Console.ReadLine();
+        Console.WriteLine("You may begin in: "); 
+        CountdownTimer();
+        Console.WriteLine();
         //TODO: repeat WriteLine("> ") until activity duration is met
+        Console.Write("> "); 
+        string answer = Console.ReadLine(); //TODO: add answer to _listResponseList for stretch challenge
         int answerAmount = 1; //TODO: calculate running total for answerAmount from answer
         Console.WriteLine($"You completed {answerAmount} items!");
-
-
     }
 }
 

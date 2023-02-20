@@ -38,7 +38,7 @@ public class Activity
         return randomPrompt;
     }
 
-    public void PauseAnimation()
+    public void PauseAnimation() //TODO: create parameter that tells it how many times to loop; set default at 1)
     {
         Console.Write(":-)");
         Thread.Sleep(1000);
@@ -65,11 +65,11 @@ public class Activity
         Console.Write("3"); 
         Thread.Sleep(1000);
         Console.Write("\b \b"); 
-        Thread.Sleep(1000);
         Console.Write("2");
         Thread.Sleep(1000);
         Console.Write("\b \b"); 
         Console.Write("1"); 
         Thread.Sleep(1000);
+        Console.Write("\b \b");
     }
 }
