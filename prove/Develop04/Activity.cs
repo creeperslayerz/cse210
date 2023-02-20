@@ -25,16 +25,51 @@ public class Activity
     {
         Console.WriteLine();
         Console.WriteLine("Well done!!");
-        //TODO: Pause animation
-        Console.WriteLine();
+        PauseAnimation();
         Console.WriteLine($"You completed {activityDuration} seconds of the {activityName}!"); 
-        //TODO: Pause animation
-        //TODO: Return to menu
+        PauseAnimation();
     }
 
-    //TODO: Create string RandomPromptGenerator(List<string> promptList) method
+    public string RandomPromptGenerator(List<string> promptList)
+    {
+        Random random = new Random();
+        int randomInt = random.Next(promptList.Count);
+        string randomPrompt = promptList[randomInt];
+        return randomPrompt;
+    }
 
-    //TODO: Create void PauseAnimation() method
+    public void PauseAnimation()
+    {
+        Console.Write(":-)");
+        Thread.Sleep(1000);
+        Console.Write("\b \b"); //Moves curser to the left, replaces with " " then moves curser back to the left again to be ready for new character
+        Console.Write("p"); //Gives it a new mouth
+        Thread.Sleep(1000);
+        Console.Write("\b \b"); 
+        Console.Write("O"); 
+        Thread.Sleep(1000);
+        Console.Write("\b \b"); 
+        Console.Write("D"); 
+        Thread.Sleep(1000);
+        Console.WriteLine("\b\b\b   ");
+    }
 
-    //TODO: Create void CountdownTimer() method
+    public void CountdownTimer()
+    {
+        Console.Write("5");
+        Thread.Sleep(1000);
+        Console.Write("\b \b"); 
+        Console.Write("4"); 
+        Thread.Sleep(1000);
+        Console.Write("\b \b"); 
+        Console.Write("3"); 
+        Thread.Sleep(1000);
+        Console.Write("\b \b"); 
+        Thread.Sleep(1000);
+        Console.Write("2");
+        Thread.Sleep(1000);
+        Console.Write("\b \b"); 
+        Console.Write("1"); 
+        Thread.Sleep(1000);
+    }
 }

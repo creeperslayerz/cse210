@@ -22,7 +22,7 @@ public class ReflectionActivity : Activity
     {
         Console.Clear();
         Console.WriteLine("Get ready...");
-        //TODO: Pause animation
+        PauseAnimation();
         Console.WriteLine("Consider the following prompt:"); 
         Console.WriteLine();
         //TODO: add random memoryPrompt from _memoryPromptList
@@ -30,9 +30,8 @@ public class ReflectionActivity : Activity
         Console.WriteLine("When you have something in mind, press enter to continue."); 
         string ready = Console.ReadLine();
         Console.WriteLine("You may begin in: "); //TODO: add countdown timer
-        //TODO: Console.Clear() when countdown timer finishes
         //TODO: add random reflectionPrompt from _reflectionPromptList
-        //TODO: add pause animation
+        PauseAnimation();
         //TODO: continue adding random reflection prompts and pause animations until activity duration is met
 
 

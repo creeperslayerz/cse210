@@ -18,7 +18,7 @@ public class BreathingActivity : Activity
     {
         Console.Clear();
         Console.WriteLine("Get ready...");
-        //TODO: Pause animation
+        PauseAnimation();
         Console.WriteLine("Breath In..."); //TODO: add countdown timer
         Console.WriteLine("Breath Out..."); //TODO: add countdown timer
         //TODO: add loop to continue cycle until activityDuration is met

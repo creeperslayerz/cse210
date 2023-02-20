@@ -20,7 +20,7 @@ public class ListingActivity : Activity
     {
         Console.Clear();
         Console.WriteLine("Get ready...");
-        //TODO: Pause animation
+        PauseAnimation();
         Console.WriteLine("List as many responses you can to the following prompt:");
         //TODO: add random listPrompt from _listPromptList
         Console.WriteLine("You may begin in: "); //TODO: add countdown timer
