@@ -25,10 +25,12 @@ public class ReflectionActivity : Activity
         PauseAnimation();
         Console.WriteLine("Consider the following prompt:"); 
         Console.WriteLine();
-        //TODO: add random memoryPrompt from _memoryPromptList
+        Console.WriteLine(" --- Prompt goes here. ---"); //TODO: add random memoryPrompt from _memoryPromptList
         Console.WriteLine();
         Console.WriteLine("When you have something in mind, press enter to continue."); 
         string ready = Console.ReadLine();
+        Console.WriteLine();
+        Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
         Console.Write("You may begin in: ");
         CountdownTimer();
         Console.WriteLine();

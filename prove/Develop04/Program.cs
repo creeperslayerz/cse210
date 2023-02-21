@@ -41,7 +41,7 @@ class Program
             }
             else 
             {
-                Console.WriteLine("Have a mindful-filling day!");
+                Console.WriteLine("Have a mindful-filling day!"); //This will only show when the program is quit. Otherwise it gets cleared when the while loop starts over.
             }
         }       
     }
