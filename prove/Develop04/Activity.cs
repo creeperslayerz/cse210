@@ -30,7 +30,7 @@ public class Activity
         PauseAnimation();
     }
 
-    public string RandomPromptGenerator(List<string> promptList)
+    public string RandomPromptGenerator(List<string> promptList) //TODO: to exceed requirements, can make it so the prompts don't repeat until they've all been done
     {
         Random random = new Random();
         int randomInt = random.Next(promptList.Count);
