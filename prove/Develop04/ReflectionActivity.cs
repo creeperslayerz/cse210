@@ -54,14 +54,14 @@ public class ReflectionActivity : Activity
         CountdownTimer();
         Console.WriteLine();
         
-        DateTime startTime = DateTime.Now;
-        DateTime futureTime = startTime.AddSeconds(GetActivityDuration());
         DateTime currentTime = DateTime.Now;
+        DateTime futureTime = currentTime.AddSeconds(GetActivityDuration());
         while(currentTime < futureTime)
         {
             currentTime = DateTime.Now;
             Console.Write(RandomPromptGenerator(_reflectionPromptList));
-            PauseAnimation();
+            PauseAnimation(3);  //It will go through the animation cycles the same number of times as you put in the parenthesis
+            Console.WriteLine();
             Console.WriteLine();
         }
     }

@@ -19,10 +19,10 @@ public class BreathingActivity : Activity
         Console.Clear();
         Console.WriteLine("Get ready...");
         PauseAnimation();
-        
-        DateTime startTime = DateTime.Now;
-        DateTime futureTime = startTime.AddSeconds(GetActivityDuration());
+        Console.WriteLine();
+
         DateTime currentTime = DateTime.Now;
+        DateTime futureTime = currentTime.AddSeconds(GetActivityDuration());
         while(currentTime < futureTime)
         {
             currentTime = DateTime.Now;

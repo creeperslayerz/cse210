@@ -28,6 +28,7 @@ public class ListingActivity : Activity
         Console.Clear();
         Console.WriteLine("Get ready...");
         PauseAnimation();
+        Console.WriteLine();
         Console.WriteLine("List as many responses you can to the following prompt:");
         Console.WriteLine($" --- {RandomPromptGenerator(_listPromptList)} ---"); 
         Console.Write("You may begin in: "); 
@@ -35,9 +36,8 @@ public class ListingActivity : Activity
         Console.WriteLine();
         
         int answerAmount = 0;
-        DateTime startTime = DateTime.Now;
-        DateTime futureTime = startTime.AddSeconds(GetActivityDuration());
         DateTime currentTime = DateTime.Now;
+        DateTime futureTime = currentTime.AddSeconds(GetActivityDuration());
         while(currentTime < futureTime)
         {
             currentTime = DateTime.Now;

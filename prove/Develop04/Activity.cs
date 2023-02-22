@@ -26,8 +26,10 @@ public class Activity
         Console.WriteLine();
         Console.WriteLine("Well done!!");
         PauseAnimation();
+        Console.WriteLine();
         Console.WriteLine($"You completed {activityDuration} seconds of the {activityName}!"); 
         PauseAnimation();
+        Console.WriteLine();
     }
 
     public string RandomPromptGenerator(List<string> promptList) //TODO: to exceed requirements, can make it so the prompts don't repeat until they've all been done
@@ -38,20 +40,25 @@ public class Activity
         return randomPrompt;
     }
 
-    public void PauseAnimation() //TODO: create parameter that tells it how many times to loop; set default at 1)
+    public void PauseAnimation(int animationCycle = 1) //TODO: create parameter that tells it how many times to loop; set default at 1)
     {
-        Console.Write(":-)");
-        Thread.Sleep(1000);
-        Console.Write("\b \b"); //Moves curser to the left, replaces with " " then moves curser back to the left again to be ready for new character
-        Console.Write("p"); //Gives it a new mouth
-        Thread.Sleep(1000);
-        Console.Write("\b \b"); 
-        Console.Write("O"); 
-        Thread.Sleep(1000);
-        Console.Write("\b \b"); 
-        Console.Write("D"); 
-        Thread.Sleep(1000);
-        Console.WriteLine("\b\b\b   ");
+        int loopCount = 1;
+        do
+        {
+            loopCount += 1;
+            Console.Write(":-)");
+            Thread.Sleep(1000);
+            Console.Write("\b \b"); //Moves curser to the left, replaces with " " then moves curser back to the left again to be ready for new character
+            Console.Write("p"); //Gives it a new mouth
+            Thread.Sleep(1000);
+            Console.Write("\b \b"); 
+            Console.Write("O"); 
+            Thread.Sleep(1000);
+            Console.Write("\b \b"); 
+            Console.Write("D"); 
+            Thread.Sleep(1000);
+            Console.Write("\b\b\b   \b\b\b");
+        }while(loopCount <= animationCycle);
     }
 
     public void CountdownTimer()
