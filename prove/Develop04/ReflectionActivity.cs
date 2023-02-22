@@ -48,15 +48,22 @@ public class ReflectionActivity : Activity
         Console.WriteLine();
         Console.WriteLine("When you have something in mind, press enter to continue."); 
         string ready = Console.ReadLine();
-        Console.WriteLine();
+        // Console.WriteLine();
         Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
         Console.Write("You may begin in: ");
         CountdownTimer();
         Console.WriteLine();
-        //TODO: continue adding random reflection prompts and pause animations until activity duration is met
-        Console.Write(RandomPromptGenerator(_reflectionPromptList));
-        PauseAnimation();
-        Console.WriteLine();
+        
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(GetActivityDuration());
+        DateTime currentTime = DateTime.Now;
+        while(currentTime < futureTime)
+        {
+            currentTime = DateTime.Now;
+            Console.Write(RandomPromptGenerator(_reflectionPromptList));
+            PauseAnimation();
+            Console.WriteLine();
+        }
     }
 }
 

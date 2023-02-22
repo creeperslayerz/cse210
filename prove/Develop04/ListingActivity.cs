@@ -10,7 +10,7 @@ public class ListingActivity : Activity
         "When have you felt the Holy Ghost this month?",
         "Who are some of your personal heroes?",
     };
-    private List<string> _listResponseList = new List<string> {};
+    private List<string> _listResponseList = new List<string> {}; //This is just in case the user wants to save/refer back to their list (future build option)
 
     public ListingActivity(){}
     
@@ -35,12 +35,17 @@ public class ListingActivity : Activity
         Console.WriteLine();
         
         int answerAmount = 0;
-        //TODO: repeat Write("> ") until activity duration is met
-        Console.Write("> "); 
-        string answer = Console.ReadLine(); //TODO: add answer to _listResponseList for stretch challenge
-        _listResponseList.Add(answer);
-        Console.WriteLine();
-        answerAmount += 1; //TODO: calculate running total for next line
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(GetActivityDuration());
+        DateTime currentTime = DateTime.Now;
+        while(currentTime < futureTime)
+        {
+            currentTime = DateTime.Now;
+            Console.Write("> "); 
+            string answer = Console.ReadLine(); //Possibly save _listResponseList to another file as future build option
+            _listResponseList.Add(answer);
+            answerAmount += 1; 
+        }
         Console.WriteLine($"You listed {answerAmount} items!");
     }
 }
