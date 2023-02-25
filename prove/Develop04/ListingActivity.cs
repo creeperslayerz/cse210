@@ -32,7 +32,7 @@ public class ListingActivity : Activity
         Console.WriteLine("List as many responses you can to the following prompt:");
         Console.WriteLine($" --- {RandomPromptGenerator(_listPromptList)} ---"); 
         Console.Write("You may begin in: "); 
-        CountdownTimer();
+        CountdownTimer(3);
         Console.WriteLine();
         
         int answerAmount = 0;

@@ -27,10 +27,10 @@ public class BreathingActivity : Activity
         {
             currentTime = DateTime.Now;
             Console.Write("Breath In..."); 
-            CountdownTimer();
+            CountdownTimer(4);
             Console.WriteLine();
             Console.Write("Breath Out..."); 
-            CountdownTimer();
+            CountdownTimer(6);
             Console.WriteLine();
             Console.WriteLine();
         }

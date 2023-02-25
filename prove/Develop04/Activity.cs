@@ -14,7 +14,7 @@ public class Activity
         Console.WriteLine();
         Console.WriteLine(activityDescription);
         Console.WriteLine();
-        Console.Write("How long, in seconds, would you like for your session? ");
+        Console.Write("How long, in seconds, would you like for your session? "); //TODO: Session times could be made more accurate. The minimum number of times it loops is 2, even if I select 5 seconds.
         string activityDurationAsString = Console.ReadLine();
         int activityDuration = int.Parse(activityDurationAsString);
         _activityDuration = activityDuration;
@@ -32,10 +32,10 @@ public class Activity
         Console.WriteLine();
     }
 
-    public string RandomPromptGenerator(List<string> promptList) //TODO: Make it so the prompts don't repeat until they've all been done
+    public string RandomPromptGenerator(List<string> promptList) //TODO: Find a way to reset the list after all the prompts have been used
     {
         
-        List<string> copyOfList = new List<string>{}; //I need to somewhere outside of this method, but can't figure out where...
+        List<string> copyOfList = new List<string>{}; //I need to create a copy of the promptList somewhere outside of this method, but can't figure out where...
         Random random = new Random();
         int randomInt = random.Next(promptList.Count);
         string randomPrompt = promptList[randomInt];
@@ -60,7 +60,7 @@ public class Activity
     }
 
     public void PauseAnimation(int animationCycle = 1) 
-    // Created parameter that tells it how many times to loop; set default at 1)
+    // Created parameter that tells it how many times to loop; default set at 1)
     {
         int loopCount = 1;
         do
@@ -82,22 +82,20 @@ public class Activity
         }while(loopCount <= animationCycle);
     }
 
-    public void CountdownTimer() //TODO: modify this method to set length of timer as the parameter
+    public void CountdownTimer(int timerLength) 
+    //This works as a single digit timer (anything between 1-9)
     {
-        Console.Write("5");
+        int newTimerLength = 0;
+        Console.Write(timerLength);
         Thread.Sleep(1000);
         Console.Write("\b \b"); 
-        Console.Write("4"); 
-        Thread.Sleep(1000);
-        Console.Write("\b \b"); 
-        Console.Write("3"); 
-        Thread.Sleep(1000);
-        Console.Write("\b \b"); 
-        Console.Write("2");
-        Thread.Sleep(1000);
-        Console.Write("\b \b"); 
-        Console.Write("1"); 
-        Thread.Sleep(1000);
-        Console.Write("\b \b");
+        newTimerLength = timerLength - 1;
+        do
+        {
+            Console.Write(newTimerLength); 
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+            newTimerLength -= 1; 
+        }while(newTimerLength > 0);
     }
 }

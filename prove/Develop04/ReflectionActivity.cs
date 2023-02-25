@@ -51,7 +51,7 @@ public class ReflectionActivity : Activity
         // Console.WriteLine();
         Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
         Console.Write("You may begin in: ");
-        CountdownTimer();
+        CountdownTimer(3);
         Console.WriteLine();
         
         DateTime currentTime = DateTime.Now;
