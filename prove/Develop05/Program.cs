@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Goal blankGoal = new Goal("","","",0);
+        Goal blankGoal = new Goal();
         string choice = "-1";
 
         while(choice != "6")
@@ -21,6 +21,11 @@ class Program
             Console.WriteLine("  6. Quit");
             Console.Write("Select a choice from the menu: ");
             choice = Console.ReadLine();
+            Console.WriteLine();
+            if(choice == "1")
+            {
+                blankGoal.CreateNewGoal();
+            }
         }
     }   
 }
