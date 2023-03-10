@@ -6,7 +6,10 @@ public class Goal
     private int _goalPoints;
     private int _userScore = 0;
     private int _goalReps; //Used in checklist goal
+    private int _goalRepsCompleted = 0; //Used in checklist goal
     private int _bonusPoints; //Used in checklist goal
+    private List<string> _goalsList = new List<string>();
+    private bool _isComplete = false; //Used in simple goal
 
     public Goal() 
     {
@@ -46,14 +49,30 @@ public class Goal
         string pointsAsString = Console.ReadLine();
         _goalPoints = int.Parse(pointsAsString);
         
-        if(goalChoice == "3")
+        if(goalChoice == "1")
         {
+            _goalType = "Simple Goal:";
+            _goalsList.Add($"{_goalType}||{_goalName}||{_goalDescription}||{_goalPoints}||{_isComplete}");
+        }
+        if(goalChoice == "2")
+        {
+            _goalType = "Eternal Goal:";
+            _goalsList.Add($"{_goalType}||{_goalName}||{_goalDescription}||{_goalPoints}");
+        }
+        else if(goalChoice == "3")
+        {
+            _goalType = "Checklist Goal:";
             Console.Write("How many repetitions will it take to complete this goal? ");
             string goalRepsAsString = Console.ReadLine();
             _goalReps = int.Parse(goalRepsAsString);
             Console.Write("What are the bonus points for completing this goal? ");
             string bonusPointsAsString = Console.ReadLine();
             _bonusPoints = int.Parse(bonusPointsAsString);
+            _goalsList.Add($"{_goalType}||{_goalName}||{_goalDescription}||{_goalPoints}||{_bonusPoints}||{_goalReps}||{_goalRepsCompleted}");
+        }       
+        foreach(string goal in _goalsList)
+        {
+            Console.WriteLine(goal);
         }
     }
     public void ListGoals()
