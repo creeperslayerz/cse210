@@ -26,6 +26,10 @@ class Program
             {
                 blankGoal.CreateNewGoal();
             }
+            if(choice == "2")
+            {
+                blankGoal.ListGoals();
+            }
         }
     }   
 }

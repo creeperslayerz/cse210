@@ -70,14 +70,13 @@ public class Goal
             _bonusPoints = int.Parse(bonusPointsAsString);
             _goalsList.Add($"{_goalType}||{_goalName}||{_goalDescription}||{_goalPoints}||{_bonusPoints}||{_goalReps}||{_goalRepsCompleted}");
         }       
-        foreach(string goal in _goalsList)
-        {
-            Console.WriteLine(goal);
-        }
     }
     public void ListGoals()
     {
-
+        foreach(string goal in _goalsList) //TODO: Split _goalsList and display in different format
+        {
+            Console.WriteLine(goal);
+        }
     }
     public virtual int RecordEvent()
     //public override int RecordEvent() for derived classes
