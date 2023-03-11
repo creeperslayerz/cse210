@@ -4,6 +4,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        EternalQuest foo = new EternalQuest();
+        EternalQuest eternalQuest = new EternalQuest();
     } 
 }

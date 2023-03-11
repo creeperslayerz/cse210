@@ -6,14 +6,14 @@ public class ChecklistGoal : Goal
     
     public ChecklistGoal(){}
 
-    public void SetGoalReps(int goalReps)
-    {
-        _goalReps = goalReps;
-    }
-    public void SetBonusPoints(int bonusPoints)
-    {
-        _bonusPoints = bonusPoints;
-    }
+    // public void SetGoalReps(int goalReps)
+    // {
+    //     _goalReps = goalReps;
+    // }
+    // public void SetBonusPoints(int bonusPoints)
+    // {
+    //     _bonusPoints = bonusPoints;
+    // }
     public override string GetPrintString()
     {
         return $"{base._goalName} ({base._goalDescription}) Reps Completed {_goalRepsCompleted}/{_goalReps}";

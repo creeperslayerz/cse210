@@ -12,7 +12,7 @@ public class EternalQuest
     {     
         string choice = "-1";
 
-        while(choice != "6")
+        while(choice != "6") //TODO: Add logic for menu option 5
         {
             Console.WriteLine();
             Console.WriteLine($"You have {userScore} points."); 
@@ -35,9 +35,17 @@ public class EternalQuest
             {
                 ListGoals();
             }
+            if(choice == "3")
+            {
+                SaveGoals();
+            }
+            if(choice == "4")
+            {
+                LoadGoals();
+            }
         }
     }  
-    public void CreateNewGoal()
+    public void CreateNewGoal() //TODO: Get option 3 to work for Checklist Goals
     {
         Console.WriteLine("The types of Goals are:");
         Console.WriteLine("  1. Simple Goal");
@@ -50,9 +58,6 @@ public class EternalQuest
         string goalName = Console.ReadLine();
         Console.Write("What is a short description of it? ");
         string goalDescription = Console.ReadLine();
-        // Console.Write("What is the amount of point associated with this goal? ");
-        // string pointsAsString = Console.ReadLine();
-        // _goalPoints = int.Parse(pointsAsString);
         
         if(goalChoice == "1")
         {
@@ -60,14 +65,15 @@ public class EternalQuest
             string pointsAsString = Console.ReadLine();
             int goalPoints = int.Parse(pointsAsString);
             SimpleGoal simpleGoal = new SimpleGoal(goalName, goalDescription, goalPoints);
-            _goalsList.Add(simpleGoal);
-            
+            _goalsList.Add(simpleGoal);   
         }
         if(goalChoice == "2")
         {
-            // EternalGoal eternalGoal = new EternalGoal();
-            // _goalType = "Eternal Goal:";
-            // _goalsList.Add($"{_goalType}||{_goalName}||{_goalDescription}||{_goalPoints}");
+            Console.Write("What is the amount of point associated with each occurence of this goal? ");
+            string pointsAsString = Console.ReadLine();
+            int goalPoints = int.Parse(pointsAsString);
+            EternalGoal eternalGoal = new EternalGoal(); //TODO: Add arguments for EternalGoal()
+            _goalsList.Add(eternalGoal);            
         }
         else if(goalChoice == "3")
         {
@@ -82,9 +88,9 @@ public class EternalQuest
             // _goalsList.Add($"{_goalType}||{_goalName}||{_goalDescription}||{_goalPoints}||{_bonusPoints}||{_goalReps}||{_goalRepsCompleted}");
         } 
     }
-    public void ListGoals()
+    public void ListGoals() //TODO: fix logic and format of ListGoals() to match video (use GetPrintString()??)
     {
-        foreach(Goal goal in _goalsList) //TODO: Split _goalsList and display in different format
+        foreach(Goal goal in _goalsList) 
         {
             Console.WriteLine(goal);
         }
