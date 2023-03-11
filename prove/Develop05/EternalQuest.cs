@@ -45,7 +45,7 @@ public class EternalQuest
             }
         }
     }  
-    public void CreateNewGoal() //TODO: Get option 3 to work for Checklist Goals
+    public void CreateNewGoal() 
     {
         Console.WriteLine("The types of Goals are:");
         Console.WriteLine("  1. Simple Goal");
@@ -72,34 +72,36 @@ public class EternalQuest
             Console.Write("What is the amount of point associated with each occurence of this goal? ");
             string pointsAsString = Console.ReadLine();
             int goalPoints = int.Parse(pointsAsString);
-            EternalGoal eternalGoal = new EternalGoal(); //TODO: Add arguments for EternalGoal()
+            EternalGoal eternalGoal = new EternalGoal(goalName, goalDescription, goalPoints); 
             _goalsList.Add(eternalGoal);            
         }
         else if(goalChoice == "3")
         {
-            // ChecklistGoal checklistGoal = new ChecklistGoal();
-            // _goalType = "Checklist Goal:";
-            // Console.Write("How many repetitions will it take to complete this goal? ");
-            // string goalRepsAsString = Console.ReadLine();
-            // _goalReps = int.Parse(goalRepsAsString);
-            // Console.Write("What are the bonus points for completing this goal? ");
-            // string bonusPointsAsString = Console.ReadLine();
-            // _bonusPoints = int.Parse(bonusPointsAsString);
-            // _goalsList.Add($"{_goalType}||{_goalName}||{_goalDescription}||{_goalPoints}||{_bonusPoints}||{_goalReps}||{_goalRepsCompleted}");
+            Console.Write("What is the amount of point associated with each repetition of this goal? ");
+            string pointsAsString = Console.ReadLine();
+            int goalPoints = int.Parse(pointsAsString);
+            Console.Write("How many repetitions will it take to complete this goal? ");
+            string goalRepsAsString = Console.ReadLine();
+            int goalReps = int.Parse(goalRepsAsString);
+            Console.Write("What are the bonus points for completing this goal? ");
+            string bonusPointsAsString = Console.ReadLine();
+            int bonusPoints = int.Parse(bonusPointsAsString);
+            ChecklistGoal checklistGoal = new ChecklistGoal(goalName, goalDescription, goalPoints, goalReps, bonusPoints);
+            _goalsList.Add(checklistGoal); 
         } 
     }
-    public void ListGoals() //TODO: fix logic and format of ListGoals() to match video (use GetPrintString()??)
+    public void ListGoals() //TODO: Number each goal in list and show if it is complete with [] before goal name
     {
         foreach(Goal goal in _goalsList) 
         {
-            Console.WriteLine(goal);
+            Console.WriteLine($"{goal.GetPrintString()}");
         }
     } 
-    public void SaveGoals()
+    public void SaveGoals() //Build out SaveGoal()
     {
 
     }
-    public List<string> LoadGoals()
+    public List<string> LoadGoals() //Build out LoadGoal()
     {
         List<string> list = new List<string>
         {"",""};

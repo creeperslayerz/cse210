@@ -11,7 +11,7 @@ public abstract class Goal
         _goalDescription = "";
     }
     
-    public Goal(string name, string description) //Can probably get rid of goalType?? or all of the parameters??
+    public Goal(string name, string description, int points)
     {
         _goalName = name;
         _goalDescription = description;
