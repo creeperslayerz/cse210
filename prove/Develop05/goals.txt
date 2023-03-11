@@ -1,0 +1,2 @@
+Eternal Goal:test points||do the points show?||50
+Checklist Goal:test checklist goal||point please||45||100||20||0

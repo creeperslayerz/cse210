@@ -1,3 +1,5 @@
+using System.IO;
+
 public class EternalQuest
 {
     private int userScore = 0;
@@ -12,7 +14,7 @@ public class EternalQuest
     {     
         string choice = "-1";
 
-        while(choice != "6") //TODO: Add logic for menu option 5
+        while(choice != "6") //TODO: Add logic for menu options 4 and 5
         {
             Console.WriteLine();
             Console.WriteLine($"You have {userScore} points."); 
@@ -39,10 +41,10 @@ public class EternalQuest
             {
                 SaveGoals();
             }
-            if(choice == "4")
-            {
-                LoadGoals();
-            }
+            // if(choice == "4")
+            // {
+            //     LoadGoals();
+            // }
         }
     }  
     public void CreateNewGoal() 
@@ -65,6 +67,7 @@ public class EternalQuest
             string pointsAsString = Console.ReadLine();
             int goalPoints = int.Parse(pointsAsString);
             SimpleGoal simpleGoal = new SimpleGoal(goalName, goalDescription, goalPoints);
+            simpleGoal.SetGoalPoints(goalPoints);
             _goalsList.Add(simpleGoal);   
         }
         if(goalChoice == "2")
@@ -73,6 +76,7 @@ public class EternalQuest
             string pointsAsString = Console.ReadLine();
             int goalPoints = int.Parse(pointsAsString);
             EternalGoal eternalGoal = new EternalGoal(goalName, goalDescription, goalPoints); 
+            eternalGoal.SetGoalPoints(goalPoints);
             _goalsList.Add(eternalGoal);            
         }
         else if(goalChoice == "3")
@@ -87,24 +91,53 @@ public class EternalQuest
             string bonusPointsAsString = Console.ReadLine();
             int bonusPoints = int.Parse(bonusPointsAsString);
             ChecklistGoal checklistGoal = new ChecklistGoal(goalName, goalDescription, goalPoints, goalReps, bonusPoints);
+            checklistGoal.SetGoalPoints(goalPoints);
             _goalsList.Add(checklistGoal); 
         } 
     }
-    public void ListGoals() //TODO: Number each goal in list and show if it is complete with [] before goal name
+    public void ListGoals() //TODO: Incoporate IsComplete() inside []
     {
+        Console.WriteLine("The goals are:");
+        int goalNumber = 0;
         foreach(Goal goal in _goalsList) 
         {
-            Console.WriteLine($"{goal.GetPrintString()}");
+            goalNumber += 1;
+            Console.WriteLine($"{goalNumber}. [] {goal.GetPrintString()}");
         }
     } 
-    public void SaveGoals() //Build out SaveGoal()
+    public void SaveGoals() 
     {
+        Console.WriteLine("What file name would you like to save it to? "); //"goals.txt"
+        string fileName = Console.ReadLine();
 
+        using(StreamWriter outputFile = new StreamWriter(fileName))
+        {
+            foreach(Goal goal in _goalsList)
+            {
+                outputFile.WriteLine($"{goal.GetSaveString()}");
+            }            
+        }
     }
-    public List<string> LoadGoals() //Build out LoadGoal()
-    {
-        List<string> list = new List<string>
-        {"",""};
-        return list;
-    }     
+    // public void LoadGoals() //Does LoadGoals() need to be in each derived class like RecordEvent()??
+    // {
+    //     Console.WriteLine("What file name would you like to load from? "); //"goals.txt"
+    //     string fileName = Console.ReadLine();
+    
+    //     _goalsList.Clear();
+        
+    //     string[] lines = System.IO.File.ReadAllLines(fileName);
+        
+    //     foreach(string line in lines)
+    //     {
+    //         string[] parts = line.Split("||");
+
+    //         Goal goal = new Goal();
+            
+    //         goal._goalName = parts[0];
+    //         goal._goalDescription = parts[1];
+    //         goal._goalPoints = parts[2];
+
+    //         _goalsList.Add(goal);
+    //     }
+    // }     
 }
