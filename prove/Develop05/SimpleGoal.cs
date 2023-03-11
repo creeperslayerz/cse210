@@ -7,7 +7,8 @@ public class SimpleGoal : Goal
     }
     public override int RecordEvent()
     {
-        return 0;
+        base._isComplete = true;
+        return base._goalPoints;
     }
 
 }

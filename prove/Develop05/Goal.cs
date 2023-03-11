@@ -1,7 +1,7 @@
 public abstract class Goal
 {
-    private string _goalName;
-    private string _goalDescription;
+    protected string _goalName;
+    protected string _goalDescription;
     protected int _goalPoints = 0;
     protected bool _isComplete = false; 
 
@@ -17,12 +17,14 @@ public abstract class Goal
         _goalDescription = description;
     }
 
+    public virtual string GetPrintString()
+    {
+        return $"{_goalName} ({_goalDescription})";
+    }
     public abstract int RecordEvent();
-    //public override int RecordEvent() for derived classes
     
     public bool IsComplete()
     {
         return _isComplete;
     }
-
 }

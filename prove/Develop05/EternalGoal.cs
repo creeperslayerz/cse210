@@ -2,7 +2,7 @@ public class EternalGoal : Goal
 {
     public override int RecordEvent()
     {
-        return 0;
+        return base._goalPoints;
     }
     
 }
