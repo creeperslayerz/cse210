@@ -1,3 +1,4 @@
-Simple Goal||test simple goal||testing this goal||10||False
+110
+Simple Goal||test simple goal||testing this goal||10||True
 Eternal Goal||test eternal goal||this is only a test||40
 Checklist Goal||test eternal goal||this is actually a checklist goal||17||False||600||5||0

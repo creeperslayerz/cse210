@@ -37,7 +37,15 @@ public class ChecklistGoal : Goal
     }
     public override int RecordEventByType()
     {
-        return 0; //TODO: Add logic to add goal reps to total and potentially award bonus points
+        int points = 0;
+        points += base._goalPoints;
+        _goalRepsCompleted += 1;
+        if(_goalRepsCompleted >= _goalReps)
+        {
+            _isComplete = true;
+            points += _bonusPoints;
+        }
+        return points; 
     }
 
 }

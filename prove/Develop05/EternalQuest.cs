@@ -105,8 +105,13 @@ public class EternalQuest
         int goalNumber = 0;
         foreach(Goal goal in _goalsList) 
         {
+            string isComplete = " ";
+            if(goal.IsComplete())
+            {
+                isComplete = "x";
+            }
             goalNumber += 1;
-            Console.WriteLine($"{goalNumber}. [] {goal.GetPrintString()}");
+            Console.WriteLine($"{goalNumber}. [{isComplete}] {goal.GetPrintString()}");
         }
     } 
     public void SaveGoals() 
@@ -116,6 +121,8 @@ public class EternalQuest
 
         using(StreamWriter outputFile = new StreamWriter(fileName))
         {
+            outputFile.WriteLine(userScore);
+
             foreach(Goal goal in _goalsList)
             {
                 outputFile.WriteLine($"{goal.GetSaveString()}");
@@ -153,6 +160,10 @@ public class EternalQuest
                 checklistGoal.SetGoalParts(parts);
                 _goalsList.Add(checklistGoal);
             }
+            else
+            {
+                userScore = int.Parse(parts[0]);
+            }
         }
     }
     public void RecordEvent()
@@ -162,7 +173,15 @@ public class EternalQuest
         string goalNumberAsString = Console.ReadLine();
         int goalNumber = int.Parse(goalNumberAsString); 
         //Use goalNumber to know which goal is accomplished from _goalslist
-        Goal goalEvent = _goalsList[goalNumber];
-        goalEvent.RecordEventByType();
+        if(_goalsList[goalNumber-1].IsComplete())
+        {
+            Console.WriteLine("\nThat goal is already complete. Make a new goal.");
+        }
+        else
+        {
+            int newPoints = _goalsList[goalNumber-1].RecordEventByType();
+            Console.WriteLine($"Congratulations! You just earned {newPoints}.");
+            userScore += newPoints;
+        }
     }     
 }
