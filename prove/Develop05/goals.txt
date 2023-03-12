@@ -1,2 +1,3 @@
-Eternal Goal:test points||do the points show?||50
-Checklist Goal:test checklist goal||point please||45||100||20||0
+Simple Goal||test simple goal||testing this goal||10||False
+Eternal Goal||test eternal goal||this is only a test||40
+Checklist Goal||test eternal goal||this is actually a checklist goal||17||False||600||5||0

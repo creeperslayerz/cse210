@@ -12,12 +12,13 @@ public abstract class Goal
         _goalPoints = 0;
         _isComplete = false;
     }
-    
     public Goal(string name, string description, int points)
     {
         _goalName = name;
         _goalDescription = description;
     }
+
+    public abstract void SetGoalParts(string[] parts);
 
     public virtual string GetPrintString()
     {
@@ -25,7 +26,7 @@ public abstract class Goal
     }
     public abstract string GetSaveString(); 
     
-    public abstract int RecordEvent();
+    public abstract int RecordEventByType();
     
     public bool IsComplete()
     {

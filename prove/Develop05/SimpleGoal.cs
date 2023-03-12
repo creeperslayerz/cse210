@@ -9,12 +9,18 @@ public class SimpleGoal : Goal
     {
         base._goalPoints = points;
     }
-
     public override string GetSaveString()
     {
-        return $"{_goalType}:{base._goalName}||{base._goalDescription}||{base._goalPoints}||{base._isComplete}"; //May need to create a Setter (like SetGoalPoints)for the _isComplete to work
+        return $"{_goalType}||{base._goalName}||{base._goalDescription}||{base._goalPoints}||{base._isComplete}"; //May need to create a Setter (like SetGoalPoints)for the _isComplete to work
     }
-    public override int RecordEvent()
+    public override void SetGoalParts(string[] parts)
+    {
+        _goalName = parts[1];
+        _goalDescription = parts[2];
+        _goalPoints = int.Parse(parts[3]);
+        _isComplete = bool.Parse(parts[4]);
+    }
+    public override int RecordEventByType()
     {
         base._isComplete = true;
         return base._goalPoints;

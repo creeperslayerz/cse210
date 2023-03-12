@@ -9,12 +9,18 @@ public class EternalGoal : Goal
     {
         base._goalPoints = points;
     }
-    
+
     public override string GetSaveString()
     {
-        return $"{_goalType}:{base._goalName}||{base._goalDescription}||{base._goalPoints}";
+        return $"{_goalType}||{base._goalName}||{base._goalDescription}||{base._goalPoints}";
     }
-    public override int RecordEvent()
+    public override void SetGoalParts(string[] parts)
+    {
+        _goalName = parts[1];
+        _goalDescription = parts[2];
+        _goalPoints = int.Parse(parts[3]);
+    }
+    public override int RecordEventByType()
     {
         return base._goalPoints;
     }
