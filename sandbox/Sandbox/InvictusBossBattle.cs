@@ -15,29 +15,26 @@ public class InvictusBossBattle
         if(bossChoice == "1")
         {
             Kydra kydra = new Kydra(350, 1, 1, 1, 1);
-            int prismaEnergy = kydra.GetPrismaEnergy();
-            int greenHeadHP = kydra.GetGreenHeadHP();
-            int lifeEnergy = kydra.GetLifeEnergy();
-            int redHeadHP = kydra.GetRedHeadHP();
-            int fireEnergy = kydra.GetFireEnergy();
-            int blueHeadHP = kydra.GetBlueHeadHP();
-            int purpleEnergy = kydra.GetPurpleEnergy();
-            int aquaEnergy = kydra.GetAquaEnergy();
-            string lastHeadAttacked = kydra.GetLastHeadAttacked();
-            Console.WriteLine();
-            Console.WriteLine("                 KYDRA");
-            Console.WriteLine($"Prisma Energy = {prismaEnergy}");
-            Console.WriteLine($"Green Head HP = {greenHeadHP}  Life Energy       = {lifeEnergy}");
-            Console.WriteLine($"Red Head HP   = {redHeadHP}  Fire Energy       = {fireEnergy}");
-            Console.WriteLine($"Blue Head HP  = {blueHeadHP}  Std Attack Energy = {purpleEnergy}");
-            Console.WriteLine($"Aqua Energy (Blocks attacks) = {aquaEnergy}");
-            Console.WriteLine($"Last Head Attacked = {lastHeadAttacked}");
+            // int prismaEnergy = kydra.GetPrismaEnergy();
+            // int greenHeadHP = kydra.GetGreenHeadHP();
+            // int lifeEnergy = kydra.GetLifeEnergy();
+            // int redHeadHP = kydra.GetRedHeadHP();
+            // int fireEnergy = kydra.GetFireEnergy();
+            // int blueHeadHP = kydra.GetBlueHeadHP();
+            // int purpleEnergy = kydra.GetPurpleEnergy();
+            // int aquaEnergy = kydra.GetAquaEnergy();
+            // string lastHeadAttacked = kydra.GetLastHeadAttacked();
+            // int hitPoints = kydra.GetHitPoints();
+            
+            while(kydra.GetHitPoints() > 0)
+            {
+                kydra.KydraStats();
 
-            //TODO: Get inputs from the users turn and have it update Kydra's stats
+                kydra.PlayerTurn();
 
-            //TODO: Create logic for Kydra to take its turn
+                kydra.BossTurn();
 
-            //TODO: Loop User turns and Kydra turns until Kydra's hitpoints = 0
+            }
         }
 
     }

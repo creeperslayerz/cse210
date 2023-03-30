@@ -56,11 +56,22 @@ public class Kydra : Boss
         _purpleEnergy= purpleEnergy;
     }
 
-    public override void BlockAttack()
+    public void KydraStats()
     {
-        base.BlockAttack();
-        //If any damage is blocked, blue head is considered _lastHeadAttacked. 
+        Console.WriteLine();
+        Console.WriteLine("                 KYDRA");
+        Console.WriteLine($"Prisma Energy = {_prismaEnergy}");
+        Console.WriteLine($"Green Head HP = {_greenHeadHP}  Life Energy       = {_lifeEnergy}");
+        Console.WriteLine($"Red Head HP   = {_redHeadHP}  Fire Energy       = {_fireEnergy}");
+        Console.WriteLine($"Blue Head HP  = {_blueHeadHP}  Std Attack Energy = {_purpleEnergy}");
+        Console.WriteLine($"Aqua Energy (Blocks attacks) = {_aquaEnergy}");
+        Console.WriteLine($"Last Head Attacked = {_lastHeadAttacked}");
     }
+    // public override void BlockAttack(int damage)
+    // {
+    //     base.BlockAttack();
+    //     //If any damage is blocked, blue head is considered _lastHeadAttacked. 
+    // }
     public override void Attack()
     {
         //uses _primaEnergy to purchase Boost cards. Each color revealed, adds an energy of that color to Kydra. Obtains _prismaEnery as enemy spends it
@@ -72,53 +83,80 @@ public class Kydra : Boss
         //Red Head's attack: 10 damage for each _fireEnergy to enemy with hightest HP in range. 
         //Blue Head's attack: uses _purpleEnergy for Standard Attacks. Hits all enemy characters 10 for each _purpleEnergy
     }
-    public override void PlayersTurn()
+    public override void PlayerTurn()
     {
-        string playersTurn = "";
-        while(playersTurn != "4")
+        string playerTurn = "";
+        while(playerTurn != "3")
         {
             Console.WriteLine();
             Console.WriteLine("1. Spend Prisma");
             Console.WriteLine("2. Attack");
-            Console.WriteLine("3. Heal");
-            Console.WriteLine("4. End Turn");
+            Console.WriteLine("3. End Turn");
             Console.WriteLine("9. Concede Defeat");
             Console.Write("What did you do on your turn? ");
-            playersTurn = Console.ReadLine();
-            if(playersTurn == "1")
+            playerTurn = Console.ReadLine();
+            if(playerTurn == "1")
             {
                 Console.Write("How much Prisma did you spend? ");
                 string spentPrismaAsString = Console.ReadLine();
                 int spentPrisma = int.Parse(spentPrismaAsString);
-                int totalPrisma = _prismaEnergy + spentPrisma;
-                SetPrismaEnergy(totalPrisma);
+                _prismaEnergy += spentPrisma;
+                SetPrismaEnergy(_prismaEnergy);
             }
-            else if(playersTurn == "2")
+            else if(playerTurn == "2")
             {
-                Console.Write("How much damage did you do? ");
+                Console.WriteLine("Which head would you like to attack? (g/r/b) ");
+                string attackedHead = Console.ReadLine();
+                Console.Write("How much damage did you do? "); //TODO: add logic to determine if attack gets blocked with aquaEnergy, which also makes blue LastHeadAttacked
                 string damageAsString = Console.ReadLine();
                 int damage = int.Parse(damageAsString);
-                int remainingHP = _hitPoints - damage;
-                SetPrismaEnergy(remainingHP);
+                
+                int blockPotential = _aquaEnergy*10;
+                if(blockPotential >= damage)
+                {
+                    Console.WriteLine($"Aqua Energy blocked {damage} damage");
+                    SetAquaEnergy(_aquaEnergy - (damage/10));
+                    damage -= damage;
+                }
+                else
+                {
+                    Console.WriteLine($"Aqua Energy blocked {blockPotential} damage");
+                    damage -= blockPotential;
+                    SetAquaEnergy(0);
+                }
+                
+                _hitPoints -= damage;
+                SetHitPoints(_hitPoints);
+                if(attackedHead == "g")
+                {
+                    _greenHeadHP -= damage;
+                    SetGreenHeadHP(_greenHeadHP);
+                    SetLastHeadAttacked("green");
+                }
+                else if(attackedHead == "r")
+                {
+                    _redHeadHP -= damage;
+                    SetGreenHeadHP(_redHeadHP);
+                    SetLastHeadAttacked("red");
+                }
+                else if(attackedHead == "b")
+                {
+                    _greenHeadHP -= damage;
+                    SetGreenHeadHP(_greenHeadHP);
+                    SetLastHeadAttacked("blue");
+                }
             }
-            else if(playersTurn == "3")
+            else if(playerTurn == "9")
             {
-                Console.WriteLine("Wise move. Kydra will not show mercy.");
-            }
-            else if(playersTurn == "9")
-            {
-                Console.WriteLine("Better luck next time. Round up some more heroes and try again!"); //TODO: Make program end here.
-            }
-            else
-            {
-                Console.WriteLine("Please choose a valid option");
+                Console.WriteLine("Better luck next time. Round up some more heroes and try again!"); 
+                SetHitPoints(0);
+                playerTurn = "3";
             }
         }
     }
-    public void BossTurn()
+    public override void BossTurn() //TODO: Create logic for Kydra to take its turn
     {
-        //First, spends _prismaEnergy
-        //Second, add Boost cards revealed to Kydra's energy totals
-        //Third, _lastHeadAttacked activates it's attack. (If a head should attack, but has no energy, it gains 1 of that energy type instead) 
+        //First, spends _prismaEnergy and add Boost cards revealed to Kydra's energy totals
+        //Second, _lastHeadAttacked activates it's attack. (If a head should attack, but has no energy, it gains 1 of that energy type instead) 
     }
 }
