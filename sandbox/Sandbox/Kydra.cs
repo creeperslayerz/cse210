@@ -67,21 +67,104 @@ public class Kydra : Boss
         Console.WriteLine($"Aqua Energy (Blocks attacks) = {_aquaEnergy}");
         Console.WriteLine($"Last Head Attacked = {_lastHeadAttacked}");
     }
-    // public override void BlockAttack(int damage)
-    // {
-    //     base.BlockAttack();
-    //     //If any damage is blocked, blue head is considered _lastHeadAttacked. 
-    // }
     public override void Attack()
     {
-        //uses _primaEnergy to purchase Boost cards. Each color revealed, adds an energy of that color to Kydra. Obtains _prismaEnery as enemy spends it
+        //uses _primaEnergy to purchase Boost cards. Each color revealed, adds an energy of that color to Kydra. (Obtains _prismaEnery as heroes spend it)
+        int boost = _prismaEnergy/2;
+        while(boost >= 1)
+        {
+            Console.Write("Flip a boost card. What color is it? (g/r/b/p/wild) ");
+            string gainedEnergy = Console.ReadLine();
+            if(gainedEnergy == "g")
+            {
+                SetLifeEnergy(_lifeEnergy+1);
+            }
+            else if(gainedEnergy == "r")
+            {
+                SetFireEnergy(_fireEnergy+1);
+            }
+            else if(gainedEnergy == "b")
+            {
+                SetAquaEnergy(_aquaEnergy+1);
+            }
+            else if(gainedEnergy == "p")
+            {
+                SetPurpleEnergy(_purpleEnergy+1);
+            }
+            else if(gainedEnergy == "wild")
+            {
+                SetLifeEnergy(_lifeEnergy+1);
+                SetFireEnergy(_fireEnergy+1);
+                SetAquaEnergy(_aquaEnergy+1);
+                SetPurpleEnergy(_purpleEnergy+1);
+            }
+            SetPrismaEnergy(_prismaEnergy-2);
+            boost -= 1;
+        }        
     }
     public override void SpecialAttack()
     {
-        //The head most recently attacked, activates it's attack
-        //Green Head's attack: it has two parts, healing and attack. 10 damage healed for each _lifeEnergy to head with lowest HP; 5 damage for each _lifeEnergy to enemy with lowest HP in range (total is rounded down to nearest increment of 10) 
-        //Red Head's attack: 10 damage for each _fireEnergy to enemy with hightest HP in range. 
-        //Blue Head's attack: uses _purpleEnergy for Standard Attacks. Hits all enemy characters 10 for each _purpleEnergy
+        //The head most recently attacked, activates it's attack. If it can't attack, it gains 1 energy instead.
+        if(_lastHeadAttacked == "green")
+        {
+            //Green Head's attack: it has two parts: 1) healing, 10 damage healed for each _lifeEnergy to head with lowest HP
+            int healingPotential = _lifeEnergy*10;
+            if(healingPotential >=10)
+            {
+                int newHealth = healingPotential + Math.Min(_greenHeadHP, (Math.Min(_redHeadHP, _blueHeadHP)));
+                if(newHealth == _greenHeadHP)
+                {
+                    Console.WriteLine($"The Green head gains {healingPotential} HP");
+                    SetGreenHeadHP(newHealth);
+                }
+                else if(newHealth == _redHeadHP)
+                {
+                    Console.WriteLine($"The Red head gains {healingPotential} HP");
+                    SetRedHeadHP(newHealth);
+                }
+                else if(newHealth == _blueHeadHP)
+                {
+                    Console.WriteLine($"The Blue head gains {healingPotential} HP");
+                    SetBlueHeadHP(newHealth);
+                }
+                // 2) Attack, 5 damage for each _lifeEnergy to enemy with lowest HP (total is rounded down to nearest increment of 10)
+                int attackPotential = _lifeEnergy*5;
+                Console.WriteLine($"The hero with the lowest HP gets attacked for {attackPotential} damage (rounded down to nearest 10)");
+                SetLifeEnergy(0);
+            }
+            else
+            {
+                SetLifeEnergy(_lifeEnergy+1);
+            }
+        }
+        else if(_lastHeadAttacked == "red")
+        {
+            //Red Head's attack: 10 damage for each _fireEnergy to enemy with hightest HP 
+            int attackPotential = _fireEnergy*10;
+            if(attackPotential >= 10)
+            {
+                Console.WriteLine($"The hero with the highest HP gets attacked for {attackPotential} damage");
+                SetFireEnergy(0);
+            }
+            else
+            {
+                SetFireEnergy(_fireEnergy+1);
+            }
+        }
+        else if(_lastHeadAttacked == "blue")
+        {
+            //Blue Head's attack: uses _purpleEnergy for Standard Attacks. Hits all enemy characters 10 for each _purpleEnergy
+            int attackPotential = _purpleEnergy*10;
+            if(attackPotential >= 10)
+            {
+                Console.WriteLine($"All heroes gets attacked for {attackPotential} damage");
+                SetPurpleEnergy(0);
+            }
+            else
+            {
+                SetPurpleEnergy(_purpleEnergy+1);
+            }
+        }
     }
     public override void PlayerTurn()
     {
@@ -107,20 +190,20 @@ public class Kydra : Boss
             {
                 Console.WriteLine("Which head would you like to attack? (g/r/b) ");
                 string attackedHead = Console.ReadLine();
-                Console.Write("How much damage did you do? "); //TODO: add logic to determine if attack gets blocked with aquaEnergy, which also makes blue LastHeadAttacked
+                Console.Write("How much damage did you do? "); 
                 string damageAsString = Console.ReadLine();
                 int damage = int.Parse(damageAsString);
                 
-                int blockPotential = _aquaEnergy*10;
+                int blockPotential = _aquaEnergy*10; //TODO: Rework logic so blue is last head attacked if it blocks any damage.
                 if(blockPotential >= damage)
                 {
-                    Console.WriteLine($"Aqua Energy blocked {damage} damage");
-                    SetAquaEnergy(_aquaEnergy - (damage/10));
+                    Console.WriteLine($"*Aqua Energy blocked {damage} damage*");
+                    SetAquaEnergy(_aquaEnergy - (damage/10)); 
                     damage -= damage;
                 }
                 else
                 {
-                    Console.WriteLine($"Aqua Energy blocked {blockPotential} damage");
+                    Console.WriteLine($"*Aqua Energy blocked {blockPotential} damage*");
                     damage -= blockPotential;
                     SetAquaEnergy(0);
                 }
@@ -156,7 +239,9 @@ public class Kydra : Boss
     }
     public override void BossTurn() //TODO: Create logic for Kydra to take its turn
     {
-        //First, spends _prismaEnergy and add Boost cards revealed to Kydra's energy totals
-        //Second, _lastHeadAttacked activates it's attack. (If a head should attack, but has no energy, it gains 1 of that energy type instead) 
+        Console.WriteLine();
+        Console.WriteLine("Kydra's Turn:");
+        Attack();
+        SpecialAttack();
     }
 }

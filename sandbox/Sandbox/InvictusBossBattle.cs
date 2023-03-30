@@ -14,25 +14,17 @@ public class InvictusBossBattle
         string bossChoice = Console.ReadLine();
         if(bossChoice == "1")
         {
-            Kydra kydra = new Kydra(350, 1, 1, 1, 1);
-            // int prismaEnergy = kydra.GetPrismaEnergy();
-            // int greenHeadHP = kydra.GetGreenHeadHP();
-            // int lifeEnergy = kydra.GetLifeEnergy();
-            // int redHeadHP = kydra.GetRedHeadHP();
-            // int fireEnergy = kydra.GetFireEnergy();
-            // int blueHeadHP = kydra.GetBlueHeadHP();
-            // int purpleEnergy = kydra.GetPurpleEnergy();
-            // int aquaEnergy = kydra.GetAquaEnergy();
-            // string lastHeadAttacked = kydra.GetLastHeadAttacked();
-            // int hitPoints = kydra.GetHitPoints();
+            Kydra kydra = new Kydra(350, 1, 1, 1, 2);
             
             while(kydra.GetHitPoints() > 0)
             {
                 kydra.KydraStats();
+                kydra.BossTurn();
 
+                kydra.KydraStats();
                 kydra.PlayerTurn();
 
-                kydra.BossTurn();
+                
 
             }
         }
