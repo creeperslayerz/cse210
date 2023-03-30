@@ -1,6 +1,11 @@
 public abstract class Minion
 {
-    private int _hitPoints = 10;
+    protected int _hitPoints;
 
     public abstract void Attack();
+
+    public Minion(int hitPoints)
+    {
+        _hitPoints = hitPoints;
+    }
 }

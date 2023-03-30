@@ -191,7 +191,7 @@ public class Kydra : Boss
             Console.WriteLine("2. Attack");
             Console.WriteLine("3. End Turn");
             Console.WriteLine("9. Concede Defeat");
-            Console.Write("What are you doing for your turn? ");
+            Console.Write("What action do you perform? ");
             playerTurn = Console.ReadLine();
             if(playerTurn == "1")
             {

@@ -31,11 +31,10 @@ public class InvictusBossBattle
 
             while(anubis.GetHitPoints() > 0)
             {
-                anubis.BossStats();
-                anubis.BossTurn();
-
-                anubis.BossStats();
-                anubis.BossTurn();
+                anubis.BossTurn();;
+                
+                //BossStats are displayed in PlayerTurn() loop because it changes so much 
+                anubis.PlayerTurn();
             }
         }
         else
