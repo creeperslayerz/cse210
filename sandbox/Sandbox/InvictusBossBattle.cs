@@ -18,18 +18,29 @@ public class InvictusBossBattle
             
             while(kydra.GetHitPoints() > 0)
             {
-                kydra.KydraStats();
+                kydra.BossStats();
                 kydra.BossTurn();
 
-                kydra.KydraStats();
+                kydra.BossStats();
                 kydra.PlayerTurn();
-
-                
-
             }
         }
+        else if(bossChoice == "2")
+        {
+            Anubis anubis = new Anubis(140,0,0,0,0);
 
+            while(anubis.GetHitPoints() > 0)
+            {
+                anubis.BossStats();
+                anubis.BossTurn();
+
+                anubis.BossStats();
+                anubis.BossTurn();
+            }
+        }
+        else
+        {
+            Console.WriteLine("May your tavern visits lead to many more adventures!");
+        }
     }
-
-    //When you construct Anubis: Set hitPoints to 140, Stamina to 0, and all energies to 0.
 }

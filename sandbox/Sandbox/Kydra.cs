@@ -56,7 +56,7 @@ public class Kydra : Boss
         _purpleEnergy= purpleEnergy;
     }
 
-    public void KydraStats()
+    public override void BossStats()
     {
         Console.WriteLine();
         Console.WriteLine("                 KYDRA");
@@ -252,12 +252,5 @@ public class Kydra : Boss
                 playerTurn = "3";
             }
         }
-    }
-    public override void BossTurn() //TODO: Create logic for Kydra to take its turn
-    {
-        Console.WriteLine();
-        Console.WriteLine("Kydra's Turn:");
-        Attack();
-        SpecialAttack();
     }
 }

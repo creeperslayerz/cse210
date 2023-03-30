@@ -56,9 +56,16 @@ public abstract class Boss
         _prismaEnergy= prismaEnergy;
     }
 
+    public abstract void BossStats();
     public abstract void Attack();
     public abstract void SpecialAttack();
     public abstract void PlayerTurn();
-    public abstract void BossTurn();
+    public void BossTurn() 
+    {
+        Console.WriteLine();
+        Console.WriteLine("Boss's Turn:");
+        Attack();
+        SpecialAttack();
+    }
 
 }
