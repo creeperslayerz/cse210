@@ -1,11 +1,40 @@
 public abstract class Boss
 {
-    private int _hitPoints;
-    private int _stamina;
-    private int _lifeEnergy;  
-    private int _fireEnergy;  
-    private int _aquaEnergy; 
-    private int _prismaEnergy;
+    protected int _hitPoints;
+    protected int _lifeEnergy;  
+    protected int _fireEnergy;  
+    protected int _aquaEnergy; 
+    protected int _prismaEnergy;
+
+    public Boss(int hitPoints, int lifeEnergy, int fireEnergy, int aquaEnergy, int prismaEnergy)
+    {
+        _hitPoints = hitPoints;
+        _lifeEnergy = lifeEnergy;
+        _fireEnergy = fireEnergy;
+        _aquaEnergy = aquaEnergy;
+        _prismaEnergy = prismaEnergy;
+    }
+
+    public int GetHitPoints()
+    {
+        return _hitPoints;
+    }
+    public int GetLifeEnergy()
+    {
+        return _lifeEnergy;
+    }
+    public int GetFireEnergy()
+    {
+        return _fireEnergy;
+    }
+    public int GetAquaEnergy()
+    {
+        return _aquaEnergy;
+    }
+    public int GetPrismaEnergy()
+    {
+        return _prismaEnergy;
+    }
 
     public virtual void BlockAttack()
     {

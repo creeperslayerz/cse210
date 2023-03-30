@@ -1,15 +1,40 @@
 public class Kydra : Boss
 {
-    //Boss: Kydra
-    //Pretty much the idea is to combine 3 heroes into one boss. Reminisent of a Hydra. 
-    //If one head gets defeated, the remaining heads don't grow back, but have their remaining abilities strenthened.
-    //That makes it interesting because the players can choose which ones to eliminate, knowing the others will be strenthened. 
-
-    private int _greenHeadHitPoints = 150;
-    private int _redHeadHitPoints = 150;
-    private int _blueHeadHitPoints = 150;
+    private int _greenHeadHP = 150;
+    private int _redHeadHP = 150;
+    private int _blueHeadHP = 150;
     private string _lastHeadAttacked = "blue";
     private int _purpleEnergy = 1; 
+
+    public Kydra(int hitPoints, int lifeEnergy, int fireEnergy, int aquaEnergy, int prismaEnergy) : base(hitPoints, lifeEnergy, fireEnergy, aquaEnergy, prismaEnergy)
+    {
+        _hitPoints = hitPoints;
+        _lifeEnergy = lifeEnergy;
+        _fireEnergy = fireEnergy;
+        _aquaEnergy = aquaEnergy;
+        _prismaEnergy = prismaEnergy;
+    }
+
+    public int GetBlueHeadHP()
+    {
+        return _blueHeadHP;
+    }
+    public int GetGreenHeadHP()
+    {
+        return _greenHeadHP;
+    }
+    public int GetRedHeadHP()
+    {
+        return _redHeadHP;
+    }
+    public string GetLastHeadAttacked()
+    {
+        return _lastHeadAttacked;
+    }
+    public int GetPurpleEnergy()
+    {
+        return _purpleEnergy;
+    }
 
     public override void BlockAttack()
     {
