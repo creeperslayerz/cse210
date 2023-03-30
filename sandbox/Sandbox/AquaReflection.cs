@@ -1,6 +1,10 @@
 public class AquaReflection : Minion
 {
-    //HP starts at 10 from Minion class, but can grow for each minion independently
+    public AquaReflection(int hitPoints) : base(hitPoints)
+    {
+        _hitPoints = hitPoints;
+    }
+
     public override void Attack()
     {
         //Blue attack is in Anubis class as BlockAttack()... is it better here??

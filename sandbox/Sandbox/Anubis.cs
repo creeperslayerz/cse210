@@ -115,6 +115,11 @@ public class Anubis : Boss
                     SetHitPoints(_hitPoints+10);
                 }
                 boost -= 1;
+                _stamina -= 20;
+                if(_hitPoints > 140)
+                {
+                    _hitPoints = 140;
+                }
             }    
         }
         else
@@ -271,7 +276,7 @@ public class Anubis : Boss
                     Console.WriteLine($"*Aqua Reflection blocked {damage} damage*");
                     damage -= damage;
                     Console.WriteLine($"Flip a Boost card if damage was blocked."); 
-                    Console.WriteLine("If blue, Aqua Reflection counter attacks with {blockPotential} damage "); 
+                    Console.WriteLine($"If blue, Aqua Reflection counter attacks with {blockPotential} damage "); 
                     string pause = Console.ReadLine();
                 }
                 else
@@ -279,7 +284,7 @@ public class Anubis : Boss
                     Console.WriteLine($"*Aqua Reflection blocked {blockPotential} damage*");
                     damage -= blockPotential;
                     Console.WriteLine($"Flip a Boost card if damage was blocked."); 
-                    Console.WriteLine("If blue, Aqua Reflection counter attacks with {blockPotential} damage.");
+                    Console.WriteLine($"If blue, Aqua Reflection counter attacks with {blockPotential} damage.");
                 }
                 
                 //Attack Choices are below
@@ -309,6 +314,7 @@ public class Anubis : Boss
                     else
                     {
                         Console.WriteLine("You will need to use the attack on a Reflection instead");
+                        string pause = Console.ReadLine();
                     }
                 }
                 else if(attackChoice == "2")
