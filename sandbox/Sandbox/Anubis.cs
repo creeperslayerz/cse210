@@ -8,7 +8,8 @@ public class Anubis : Boss
     private int _lifeReflectionSize = 0;
     private int _prismaReflectionSize = 0; //is special becuase 6 energy is required to summon instead of 3 
     private int _stamina = 0;
-    private int _distanceFromHeroes = 1; //Add 1 to distance when reflections are present 
+    private int _distanceFromHeroes = 1; //Add 1 to distance when reflections are present
+    private int _playerCount = 3; 
 
     public Anubis(int hitPoints, int lifeEnergy, int fireEnergy, int aquaEnergy, int prismaEnergy) : base(hitPoints, lifeEnergy, fireEnergy, aquaEnergy, prismaEnergy)
     {
@@ -116,7 +117,7 @@ public class Anubis : Boss
                 }
                 boost -= 1;
                 _stamina -= 20;
-                if(_hitPoints > 140)
+                if(_hitPoints > 140) //Anubis is limited to 140 health, whereas Kydra can keep growing.
                 {
                     _hitPoints = 140;
                 }
@@ -188,11 +189,31 @@ public class Anubis : Boss
             _aquaEnergy += 1;
         }
         string pause = Console.ReadLine();
+        ReflectionsAttack();
+
     }
+
     public void ReflectionsAttack()
     {
-        //reflections attack at the end of each round
-
+        //reflections only attack after all the heroes have taken a turn (once a round)
+        if(_playerCount > 0)
+        {
+            _playerCount -= 1;
+        }
+        else
+        {
+            Console.WriteLine("!!Reflections activate!!");
+            Console.WriteLine($"Prisma Reflection forces all players to discard {_prismaReflectionSize} Prisma from their hand.");
+            Console.WriteLine("10 unblockable damage is dealt for each Prisma not discarded this way.");
+            string pause = Console.ReadLine();
+            Console.WriteLine($"Life Reflection deals {_lifeReflectionSize*5} damage to all heroes (round down to nearest 10).");
+            pause = Console.ReadLine();
+            Console.WriteLine($"Fire Reflection deals {_fireReflectionSize*10} damage to hero with highest HP.");
+            pause = Console.ReadLine();
+            Console.WriteLine($"(Aqua Reflection just blocks incoming damage and counter attacks at that time.)");
+            pause = Console.ReadLine();
+            _playerCount = 3;
+        }
     }
     public override void PlayerTurn()
     {

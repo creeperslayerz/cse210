@@ -28,7 +28,6 @@ public class InvictusBossBattle
         else if(bossChoice == "2")
         {
             Anubis anubis = new Anubis(140,0,0,0,0);
-
             while(anubis.GetHitPoints() > 0)
             {
                 anubis.BossTurn();;
