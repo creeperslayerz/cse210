@@ -73,26 +73,31 @@ public class Kydra : Boss
         int boost = _prismaEnergy/2;
         while(boost >= 1)
         {
-            Console.Write("Flip a boost card. What color is it? (g/r/b/p/wild) ");
+            Console.Write("Kydra spends 2 Prisma. Flip a boost card. What color is it? (g/r/b/p/wild) ");
             string gainedEnergy = Console.ReadLine();
             if(gainedEnergy == "g")
             {
+                Console.WriteLine("Kydra gains 1 Life Energy");
                 SetLifeEnergy(_lifeEnergy+1);
             }
             else if(gainedEnergy == "r")
             {
+                Console.WriteLine("Kydra gains 1 Fire Energy");
                 SetFireEnergy(_fireEnergy+1);
             }
             else if(gainedEnergy == "b")
             {
+                Console.WriteLine("Kydra gains 1 Aqua Energy");
                 SetAquaEnergy(_aquaEnergy+1);
             }
             else if(gainedEnergy == "p")
             {
+                Console.WriteLine("Kydra gains 1 Std Attack Energy");
                 SetPurpleEnergy(_purpleEnergy+1);
             }
             else if(gainedEnergy == "wild")
             {
+                Console.WriteLine("Kydra gains 1 to all 4 Energy types");
                 SetLifeEnergy(_lifeEnergy+1);
                 SetFireEnergy(_fireEnergy+1);
                 SetAquaEnergy(_aquaEnergy+1);
@@ -111,29 +116,33 @@ public class Kydra : Boss
             int healingPotential = _lifeEnergy*10;
             if(healingPotential >=10)
             {
-                int newHealth = healingPotential + Math.Min(_greenHeadHP, (Math.Min(_redHeadHP, _blueHeadHP)));
-                if(newHealth == _greenHeadHP)
+                int lowestHeadHP = Math.Min(_greenHeadHP, (Math.Min(_redHeadHP, _blueHeadHP)));
+                int newHealth = healingPotential + lowestHeadHP;
+                if(lowestHeadHP == _blueHeadHP)
+                {
+                    Console.WriteLine($"Blue head gains {healingPotential} HP");
+                    SetBlueHeadHP(newHealth);
+                }
+                else if(lowestHeadHP == _greenHeadHP)
                 {
                     Console.WriteLine($"The Green head gains {healingPotential} HP");
                     SetGreenHeadHP(newHealth);
                 }
-                else if(newHealth == _redHeadHP)
+                else if(lowestHeadHP == _redHeadHP)
                 {
                     Console.WriteLine($"The Red head gains {healingPotential} HP");
                     SetRedHeadHP(newHealth);
                 }
-                else if(newHealth == _blueHeadHP)
-                {
-                    Console.WriteLine($"The Blue head gains {healingPotential} HP");
-                    SetBlueHeadHP(newHealth);
-                }
                 // 2) Attack, 5 damage for each _lifeEnergy to enemy with lowest HP (total is rounded down to nearest increment of 10)
                 int attackPotential = _lifeEnergy*5;
-                Console.WriteLine($"The hero with the lowest HP gets attacked for {attackPotential} damage (rounded down to nearest 10)");
+                Console.WriteLine($"Green head attacks the hero with the lowest HP for {attackPotential} damage (rounded down to nearest 10) ");
+                string pause = Console.ReadLine();
                 SetLifeEnergy(0);
             }
             else
             {
+                Console.WriteLine("Kydra gains 1 Life Energy ");
+                string pause = Console.ReadLine(); 
                 SetLifeEnergy(_lifeEnergy+1);
             }
         }
@@ -143,11 +152,14 @@ public class Kydra : Boss
             int attackPotential = _fireEnergy*10;
             if(attackPotential >= 10)
             {
-                Console.WriteLine($"The hero with the highest HP gets attacked for {attackPotential} damage");
+                Console.WriteLine($"Red head attacks the hero with the highest HP for {attackPotential} damage ");
+                string pause = Console.ReadLine();
                 SetFireEnergy(0);
             }
             else
             {
+                Console.WriteLine("Kydra gains 1 Fire Energy ");
+                string pause = Console.ReadLine(); 
                 SetFireEnergy(_fireEnergy+1);
             }
         }
@@ -157,11 +169,14 @@ public class Kydra : Boss
             int attackPotential = _purpleEnergy*10;
             if(attackPotential >= 10)
             {
-                Console.WriteLine($"All heroes gets attacked for {attackPotential} damage");
+                Console.WriteLine($"Blue head attacks all heroes for {attackPotential} damage ");
+                string pause = Console.ReadLine();
                 SetPurpleEnergy(0);
             }
             else
             {
+                Console.WriteLine("Kydra gains 1 Std Attack Energy ");
+                string pause = Console.ReadLine(); 
                 SetPurpleEnergy(_purpleEnergy+1);
             }
         }
@@ -176,7 +191,7 @@ public class Kydra : Boss
             Console.WriteLine("2. Attack");
             Console.WriteLine("3. End Turn");
             Console.WriteLine("9. Concede Defeat");
-            Console.Write("What did you do on your turn? ");
+            Console.Write("What are you doing for your turn? ");
             playerTurn = Console.ReadLine();
             if(playerTurn == "1")
             {
@@ -185,6 +200,7 @@ public class Kydra : Boss
                 int spentPrisma = int.Parse(spentPrismaAsString);
                 _prismaEnergy += spentPrisma;
                 SetPrismaEnergy(_prismaEnergy);
+                Console.WriteLine($"Kydra gains {spentPrisma} Prisma");
             }
             else if(playerTurn == "2")
             {
@@ -219,13 +235,13 @@ public class Kydra : Boss
                 else if(attackedHead == "r")
                 {
                     _redHeadHP -= damage;
-                    SetGreenHeadHP(_redHeadHP);
+                    SetRedHeadHP(_redHeadHP);
                     SetLastHeadAttacked("red");
                 }
                 else if(attackedHead == "b")
                 {
-                    _greenHeadHP -= damage;
-                    SetGreenHeadHP(_greenHeadHP);
+                    _blueHeadHP -= damage;
+                    SetBlueHeadHP(_blueHeadHP);
                     SetLastHeadAttacked("blue");
                 }
             }

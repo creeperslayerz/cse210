@@ -56,11 +56,6 @@ public abstract class Boss
         _prismaEnergy= prismaEnergy;
     }
 
-    // public virtual void BlockAttack()
-    // {
-    //     //_aquaEnergy is used to block damage. 10 damage blocked for each _aquaEnergy. 
-        
-    // }
     public abstract void Attack();
     public abstract void SpecialAttack();
     public abstract void PlayerTurn();
