@@ -14,7 +14,7 @@ public class InvictusBossBattle
         string bossChoice = Console.ReadLine();
         if(bossChoice == "1")
         {
-            Kydra kydra = new Kydra(350, 1, 1, 1, 2);
+            Kydra kydra = new Kydra(350, 1, 1, 1, 3);
             
             while(kydra.GetHitPoints() > 0)
             {

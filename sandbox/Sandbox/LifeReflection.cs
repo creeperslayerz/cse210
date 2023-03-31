@@ -8,7 +8,7 @@ public class LifeReflection : Minion
     public override void Attack()
     {
         //ONGOING: Prevents heroes to perform any healing as long as LifeReflection is summoned
-        //Size of fireMinion*5 damage to all heroes (round down to nearest 10)
+        //Size of lifeMinion*5 damage to all heroes (round down to nearest 10)
     }
 
 

@@ -70,10 +70,10 @@ public class Kydra : Boss
     public override void Attack()
     {
         //uses _primaEnergy to purchase Boost cards. Each color revealed, adds an energy of that color to Kydra. (Obtains _prismaEnery as heroes spend it)
-        int boost = _prismaEnergy/2;
+        int boost = _prismaEnergy/3;
         while(boost >= 1)
         {
-            Console.Write("Kydra spends 2 Prisma. Flip a boost card. What color is it? (g/r/b/p/wild) ");
+            Console.Write("Kydra spends 3 Prisma. Flip a boost card. What color is it? (g/r/b/p/wild) ");
             string gainedEnergy = Console.ReadLine();
             if(gainedEnergy == "g")
             {
@@ -103,7 +103,7 @@ public class Kydra : Boss
                 SetAquaEnergy(_aquaEnergy+1);
                 SetPurpleEnergy(_purpleEnergy+1);
             }
-            SetPrismaEnergy(_prismaEnergy-2);
+            SetPrismaEnergy(_prismaEnergy-3);
             boost -= 1;
         }        
     }
@@ -118,6 +118,7 @@ public class Kydra : Boss
             {
                 int lowestHeadHP = Math.Min(_greenHeadHP, (Math.Min(_redHeadHP, _blueHeadHP)));
                 int newHealth = healingPotential + lowestHeadHP;
+                Console.WriteLine("Green head activates, which both heals and attacks");
                 if(lowestHeadHP == _blueHeadHP)
                 {
                     Console.WriteLine($"Blue head gains {healingPotential} HP");
@@ -141,7 +142,7 @@ public class Kydra : Boss
             }
             else
             {
-                Console.WriteLine("Kydra gains 1 Life Energy ");
+                Console.WriteLine("Kydra has no Life Energy to attack, so he gains 1 instead ");
                 string pause = Console.ReadLine(); 
                 SetLifeEnergy(_lifeEnergy+1);
             }
@@ -158,7 +159,7 @@ public class Kydra : Boss
             }
             else
             {
-                Console.WriteLine("Kydra gains 1 Fire Energy ");
+                Console.WriteLine("Kydra has no Fire Energy to attack, so he gains 1 instead ");
                 string pause = Console.ReadLine(); 
                 SetFireEnergy(_fireEnergy+1);
             }
@@ -175,7 +176,7 @@ public class Kydra : Boss
             }
             else
             {
-                Console.WriteLine("Kydra gains 1 Std Attack Energy ");
+                Console.WriteLine("Kydra has no Std Attack Energy to attack, so he gains 1 instead ");
                 string pause = Console.ReadLine(); 
                 SetPurpleEnergy(_purpleEnergy+1);
             }
